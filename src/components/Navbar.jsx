@@ -1,10 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaTv } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [navBg, setNavBg] = useState(false);
+  const { pathname } = useLocation();
 
   const changeNavBg = () => {
     window.scrollY >= 550 ? setNavBg(true) : setNavBg(false);
@@ -17,7 +18,9 @@ const Navbar = () => {
     };
   }, []);
 
-  const bg = navBg ? "bg-base-300" : "border-b border-accent";
+  const bg = navBg && "bg-base-300";
+  const headerStyles =
+    pathname === "/" ? "fixed top-0 z-50" : "bg-base-300";
 
   const links = (
     <>
@@ -27,12 +30,12 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/team" className="font-semibold text-lg">
+        <NavLink to="/movies" className="font-semibold text-lg">
           All Movies
         </NavLink>
       </li>
       <li>
-        <NavLink to="/movies" className="font-semibold text-lg">
+        <NavLink to="/AddMovies" className="font-semibold text-lg">
           Add Movie
         </NavLink>
       </li>
@@ -56,7 +59,7 @@ const Navbar = () => {
   );
 
   return (
-    <header className={`fixed top-0 z-50 w-full ${bg}`}>
+    <header className={`${headerStyles} ${bg}  w-full`}>
       <div className="navbar py-0 w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
