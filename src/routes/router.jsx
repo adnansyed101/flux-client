@@ -7,7 +7,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    loader: () => fetch("/api/movies"),
+    loader: () => fetch("/api/movies/featured"),
   },
   {
     path: "/signin",
