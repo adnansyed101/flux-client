@@ -4,6 +4,8 @@ import SignIn from "../pages/Signin";
 import Signup from "../pages/Signup";
 import AllMovies from "../pages/AllMovies";
 import AddMovie from "../pages/AddMovie";
+import PrivateRoute from "./PrivateRoute";
+import MovieDetails from "../pages/MovieDetails";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,21 @@ const router = createBrowserRouter([
     loader: () => fetch("/api/movies"),
   },
   {
+    path: "/movie/:id",
+    element: (
+      <PrivateRoute>
+        <MovieDetails />
+      </PrivateRoute>
+    ),
+    loader: ({ params }) => fetch(`/api/movies/${params.id}`),
+  },
+  {
     path: "/addMovie",
-    element: <AddMovie />,
+    element: (
+      <PrivateRoute>
+        <AddMovie />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/signin",
