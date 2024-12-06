@@ -2,7 +2,7 @@ import watchImg from "../assets/watch.svg";
 
 const Watch = () => {
   return (
-    <div className="hero text-white py-32">
+    <div className="hero py-32">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src={watchImg} className="max-w-xl rounded-lg" />
         <div>
@@ -14,7 +14,7 @@ const Watch = () => {
             Movie websites are the ultimate guide for cinephiles, providing
             everything from showtimes to streaming options at your fingertips.
           </p>
-          <button className="primary-btn">Get Started</button>
+          <button className="btn btn-primary">Get Started</button>
         </div>
       </div>
     </div>
