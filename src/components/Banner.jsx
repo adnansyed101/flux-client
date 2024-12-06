@@ -15,7 +15,7 @@ const Banner = () => {
     {
       id: 1,
       imgURl:
-        "https://media.istockphoto.com/id/1412871535/photo/friends-watching-movies-together-at-home.jpg?s=612x612&w=0&k=20&c=ELSN7ZtKYDs7DeW9EG_Dh7i-aIBOR_9ktlvRpFaZnEM=",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQayQuUkQCIf9i3kdrsBg1UKAXF3OB2PX0JkQ&s",
       title: "Your Gateway to the world of movies",
       description:
         "A good movie website is like a portal to another world, where every click brings you closer to the magic of cinema.",
@@ -23,7 +23,7 @@ const Banner = () => {
     {
       id: 2,
       imgURl:
-        "https://www.acima.com/medias/Ways-To-Upgrade-At-Home-Movie-Nights.jpeg?context=bWFzdGVyfGltYWdlc3w0ODk1NXxpbWFnZS9qcGVnfHN5cy1tYXN0ZXIvaW1hZ2VzL2g5Zi9oNDYvODg1NDIwOTIwMDE1OC9XYXlzX1RvX1VwZ3JhZGVfQXRfSG9tZV9Nb3ZpZV9OaWdodHMuanBlZ3wyOTI2ZGE2ZDQ5NmViMDBhZWJjZGRjYWE4M2ZhMGY2NTMwOWNhNjBkODNjZWNiYzAxODNlNTUxMjk3Y2JhYmU0",
+        "https://img.freepik.com/free-photo/group-friends-watching-tv-sport-match-together-emotional-fans-cheering-favourite-team-watching-exciting-football-concept-friendship-leisure-activity-emotions_155003-38767.jpg?semt=ais_hybrid",
       title: "Dive into the Cinematic Universe",
       description:
         "A good movie website is like a portal to another world, where every click brings you closer to the magic of cinema.",
