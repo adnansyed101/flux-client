@@ -3,7 +3,7 @@ import { FaTv } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="block bg-neutral text-neutral-content p-2">
+    <footer className="bg-base-300 py-2">
       <div className="flex justify-between items-center container mx-auto">
         <aside>
           <p className="flex gap-2 items-center justify-center ">
@@ -11,6 +11,7 @@ const Footer = () => {
             <span className="font-bold text-2xl">Flux</span>
           </p>
         </aside>
+        <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         <nav>
           <h6 className="footer-title">Social</h6>
           <div className="grid grid-flow-col gap-4">
