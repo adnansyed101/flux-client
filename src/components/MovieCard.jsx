@@ -6,7 +6,7 @@ const MovieCard = ({ movie }) => {
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
-        <img src={imgLink} alt="Movie" />
+        <img src={imgLink} alt="Movie" className="w-full"/>
       </figure>
       <div className="card-body p-2">
         <h2 className="card-title">{title}</h2>
