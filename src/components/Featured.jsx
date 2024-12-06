@@ -6,16 +6,18 @@ const Featured = () => {
   console.log(movies);
 
   return (
-    <section className="container mx-auto">
-      <div className="text-white text-center">
+    <section>
+      <div className="text-center">
         <h1 className="text-xl md:text-3xl font-semibold mb-5">
           Featured Movies
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 bg-slateGray p-5 rounded-lg">
-        {movies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} />
-        ))}
+      <div className="bg-accent py-10">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-6 gap-5">
+          {movies.map((movie) => (
+            <MovieCard key={movie._id} movie={movie} />
+          ))}
+        </div>
       </div>
     </section>
   );
