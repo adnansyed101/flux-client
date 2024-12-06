@@ -35,12 +35,12 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/AddMovies" className="font-semibold text-lg">
+        <NavLink to="/addMovie" className="font-semibold text-lg">
           Add Movie
         </NavLink>
       </li>
       <li>
-        <NavLink to="/favourties" className="font-semibold text-lg">
+        <NavLink to="/favourite" className="font-semibold text-lg">
           My Favourites
         </NavLink>
       </li>
