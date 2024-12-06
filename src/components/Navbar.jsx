@@ -1,28 +1,12 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaTv } from "react-icons/fa6";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { IoPersonCircle } from "react-icons/io5";
 
 const Navbar = () => {
-  const [navBg, setNavBg] = useState(false);
-  const { pathname } = useLocation();
   const { user, logOut } = useContext(AuthContext);
-
-  const changeNavBg = () => {
-    window.scrollY >= 550 ? setNavBg(true) : setNavBg(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", changeNavBg);
-    return () => {
-      window.removeEventListener("scroll", changeNavBg);
-    };
-  }, []);
-
-  const bg = navBg && "bg-base-300";
-  const headerStyles = pathname === "/" ? "fixed top-0 z-50" : "bg-base-300";
 
   const links = (
     <>
@@ -95,7 +79,7 @@ const Navbar = () => {
     );
 
   return (
-    <header className={`${headerStyles} ${bg}  w-full`}>
+    <header className="w-full fixed top-0 z-50 bg-base-300">
       <div className="navbar py-0 w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
