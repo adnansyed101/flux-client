@@ -17,7 +17,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const bg = navBg ? "bg-base-300" : "";
+  const bg = navBg ? "bg-base-300" : "border-b border-accent";
 
   const links = (
     <>
