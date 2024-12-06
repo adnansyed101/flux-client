@@ -3,7 +3,6 @@ import MovieCard from "./MovieCard";
 
 const Featured = () => {
   const { data: movies } = useLoaderData();
-  console.log(movies);
 
   return (
     <section>
