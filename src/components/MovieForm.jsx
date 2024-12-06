@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Rating } from "react-simple-star-rating";
+
 const MovieForm = () => {
   const genres = [
     { id: 1, name: "Action" },
@@ -12,61 +16,180 @@ const MovieForm = () => {
     { id: 10, name: "Animation" },
   ];
 
+  const [rating, setRating] = useState(0);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    imgUrl: "",
+    title: "",
+    genre: "Pick One",
+    duration: 0,
+    releaseYear: "",
+    summary: "",
+  });
+
+  const handleRating = (rate) => {
+    setRating(rate);
+  };
+
+  const onSubmit = (data) => {
+    console.log(data, rating);
+  };
+
+  console.log(errors);
+
   return (
     <section className="my-10 flex flex-col items-center">
       <div className="text-center">
         <h1 className="text-xl md:text-3xl font-semibold mb-5">Add Movie</h1>
       </div>
       <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+          {/* Image Link */}
           <div className="form-control">
-            <label className="input input-bordered flex items-center gap-2">
-              Image URL
-              <input type="text" className="grow" placeholder="Daisy" />
-            </label>
+            <div className="label">
+              <span className="label-text">Image Link</span>
+            </div>
+            <input
+              type="text"
+              {...register("imgUrl", {
+                required: "This is required",
+                pattern: {
+                  value:
+                    /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/,
+                  message: "There seems to be a mistake with the link",
+                },
+              })}
+              className="input input-bordered"
+              placeholder="Movie Image Link"
+            />
+            {errors.imgUrl && (
+              <p className="text-error">{errors.imgUrl?.message}</p>
+            )}
           </div>
+          {/* Title */}
           <div className="form-control">
-            <label className="input input-bordered flex items-center gap-2">
-              Title
-              <input type="text" className="grow" placeholder="Daisy" />
-            </label>
+            <div className="label">
+              <span className="label-text">Title</span>
+            </div>
+            <input
+              type="text"
+              {...register("title", {
+                required: "This is required",
+                minLength: {
+                  value: 2,
+                  message: "At Least 2 Characters",
+                },
+              })}
+              className="input input-bordered"
+              placeholder="Movie Name"
+            />
+            {errors.title && (
+              <p className="text-error">{errors.title?.message}</p>
+            )}
           </div>
+          {/* Select Genre */}
           <div className="form-control">
-            <select className="select select-bordered">
-              <option disabled selected>
-               Select Genre
-              </option>
-              {genres.map((genre) => (
-                <option key={genre.id}>{genre.name}</option>
-              ))}
-            </select>
+            <div className="label">
+              <span className="label-text">Select Genre</span>
+            </div>
+            <Controller
+              name="genre"
+              control={control}
+              rules={{ required: "This is required" }}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  defaultValue={"Select Genre"}
+                  className="select select-bordered"
+                >
+                  <option disabled>Select Genre</option>
+                  {genres.map((genre) => (
+                    <option key={genre.id}>{genre.name}</option>
+                  ))}
+                </select>
+              )}
+            />
+            {errors.genre && (
+              <p className="text-error">{errors.genre?.message}</p>
+            )}
           </div>
+          {/* Duration */}
           <div className="form-control">
-            <label className="input input-bordered flex items-center gap-2">
-              Duration
-              <input type="number" className="grow" placeholder="in minutes" />
-            </label>
+            <div className="label">
+              <span className="label-text">Duration</span>
+            </div>
+            <input
+              type="number"
+              name="duration"
+              {...register("duration", {
+                required: "This is required",
+                min: {
+                  value: 60,
+                  message: "At least 60 mins",
+                },
+              })}
+              className="input input-bordered"
+              placeholder="In Minutes"
+            />
+            {errors.duration && (
+              <p className="text-error">{errors.duration?.message}</p>
+            )}
           </div>
+          {/* Release Year */}
           <div className="form-control">
-            <label className="input input-bordered flex items-center gap-2">
-              Realease Date
-              <input type="date" className="grow" />
-            </label>
+            <div className="label">
+              <span className="label-text">Release Year</span>
+            </div>
+            <input
+              type="number"
+              {...register("realeaseDate", {
+                required: "This is required",
+                min: {
+                  value: 1896,
+                  message: "At least 60 mins",
+                },
+              })}
+              className="input input-bordered"
+              placeholder="Only Year"
+            />
+            {errors.realeaseDate && (
+              <p className="text-error">{errors.realeaseDate?.message}</p>
+            )}
           </div>
+          {/* Rating */}
           <div className="form-control">
-            <label className="input input-bordered flex items-center gap-2">
-              Rating
-              <input type="number" className="grow" />
-            </label>
+            <div className="label">
+              <span className="label-text">Rating</span>
+            </div>
+            <Rating
+              onClick={handleRating}
+              allowFraction={true}
+              transition={true}
+            />
           </div>
           <label className="form-control">
             <div className="label">
-              <span className="label-text font-semibold text-lg">Summary</span>
+              <span className="label-text">Summary</span>
             </div>
             <textarea
               className="textarea textarea-bordered h-24"
-              placeholder="Bio"
+              {...register("summary", {
+                required: "This is required",
+                minLength: {
+                  value: 10,
+                  message: "At least 10 characters",
+                },
+              })}
+              placeholder="Info About Movie"
             ></textarea>
+            {errors.summary && (
+              <p className="text-error">{errors.summary?.message}</p>
+            )}
           </label>
           <div className="form-control mt-6">
             <button className="btn btn-primary">Submit</button>
