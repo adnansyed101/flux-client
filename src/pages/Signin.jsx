@@ -1,64 +1,71 @@
 import { BsGoogle } from "react-icons/bs";
-import { Link } from "react-router-dom";
-// import { useContext, useEffect } from "react";
-// import { AuthContext } from "../provider/AuthProvider";
-// import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { toast } from "react-toastify";
 import "animate.css";
-// import Loading from "../components/Loading";
+import Loading from "../components/Loading";
+import { useForm } from "react-hook-form";
 
 const SignIn = () => {
-  //   const { login, setUser, createUserWithGoogle, loading, setLoading } =
-  //     useContext(AuthContext);
-  //   const navigate = useNavigate();
+  const { login, setUser, createUserWithGoogle, loading, setLoading } =
+    useContext(AuthContext);
 
-  //   useEffect(() => {
-  //     document.title = "Go Travels | Login";
-  //   }, []);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    email: "",
+    password: "",
+  });
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const form = new FormData(e.target);
-  //     const email = form.get("email");
-  //     const password = form.get("password");
+  useEffect(() => {
+    document.title = "Flux | Login";
+  }, []);
 
-  //     login(email, password)
-  //       .then((result) => {
-  //         const user = result.user;
-  //         setUser(user);
-  //         toast.success("Yay! Logged in.");
-  //         navigate("/");
-  //       })
-  //       .catch((error) => {
-  //         const errorCode = error.code;
-  //         toast.error(errorCode);
-  //         setLoading(false);
-  //       });
-  //   };
+  const onSubmit = (data) => {
+    const { email, password } = data;
 
-  //   const handleGoogleLogin = () => {
-  //     createUserWithGoogle()
-  //       .then((res) => {
-  //         const user = res.user;
-  //         setUser(user);
-  //         navigate("/");
-  //         toast.success("Login Succesfull.");
-  //       })
-  //       .catch((err) => {
-  //         const errorCode = err.code;
-  //         toast.error(errorCode);
-  //       });
-  //   };
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        toast.success("Yay! Logged in.");
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        toast.error(errorCode);
+        setLoading(false);
+      });
+  };
 
-  //   if (loading) {
-  //     return <Loading />;
-  //   }
+  const handleGoogleLogin = () => {
+    createUserWithGoogle()
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+        navigate("/");
+        toast.success("Login Succesfull.");
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        toast.error(errorCode);
+      });
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
-    <div className="hero bg-gradient-to-br from-midnightBlue to-slateGray min-h-screen text-white">
+    <div className="hero bg-gradient-to-br from-primary to-accent min-h-screen">
       <div className="hero-content">
-        <div className="card bg-primaryBg shadow-2xl animate__animated animate__bounceInDown">
+        <div className="card bg-slate-100 shadow-2xl animate__animated animate__bounceInDown">
           <div className="card-body">
-            <form className="md:w-96">
+            <form onSubmit={handleSubmit(onSubmit)} className="md:w-96">
               <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
                 Login
               </h1>
@@ -67,11 +74,15 @@ const SignIn = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  {...register("email", {
+                    required: "This is required",
+                  })}
                   type="email"
-                  name="email"
                   className="input border-accent"
-                  required
                 />
+                {errors.email && (
+                  <p className="text-error">{errors.email?.message}</p>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -79,7 +90,9 @@ const SignIn = () => {
                 </label>
                 <input
                   type="password"
-                  name="password"
+                  {...register("password", {
+                    required: "This is required",
+                  })}
                   className="input border-accent"
                   required
                 />
@@ -94,17 +107,19 @@ const SignIn = () => {
               </div>
               <p>
                 Do not have an account ?{" "}
-                <Link to="/register" className="text-accent">
-                  Register
+                <Link to="/signup" className="text-accent">
+                  Sign Up
                 </Link>
               </p>
               <div className="form-control mt-4">
-                <button className="primary-btn">Login</button>
+                <button type="submit" className="btn btn-primary">
+                  Login
+                </button>
               </div>
             </form>
             <button
-              //   onClick={handleGoogleLogin}
-              className="btn btn-outline btn-accent"
+              onClick={handleGoogleLogin}
+              className="btn btn-outline btn-secondary"
             >
               <BsGoogle /> Login Using Google
             </button>
