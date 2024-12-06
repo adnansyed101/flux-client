@@ -17,27 +17,27 @@ const Navbar = () => {
     };
   }, []);
 
-  const bg = navBg ? "bg-slateGray" : "border-b border-emeraldGreen";
+  const bg = navBg ? "bg-base-300" : "";
 
   const links = (
     <>
       <li>
-        <NavLink to="/" className="font-semibold text-xl">
+        <NavLink to="/" className="font-semibold text-lg">
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/team" className="font-semibold text-xl">
+        <NavLink to="/team" className="font-semibold text-lg">
           All Movies
         </NavLink>
       </li>
       <li>
-        <NavLink to="/offers" className="font-semibold text-xl">
+        <NavLink to="/movies" className="font-semibold text-lg">
           Add Movie
         </NavLink>
       </li>
       <li>
-        <NavLink to="/beyond" className="font-semibold text-xl">
+        <NavLink to="/favourties" className="font-semibold text-lg">
           My Favourites
         </NavLink>
       </li>
@@ -46,18 +46,18 @@ const Navbar = () => {
 
   const logBtns = (
     <div className="space-x-2">
-      <Link to="/signIn" className="primary-btn">
+      <Link to="/signin" className="btn btn-primary">
         Sign In
       </Link>
-      <Link to="/signUp" className="secondary-btn">
+      <Link to="/signup" className="btn btn-secondary">
         Sign Up
       </Link>
     </div>
   );
 
   return (
-    <header className={`fixed top-0 z-50 w-full text-white ${bg}`}>
-      <div className="navbar md:container mx-auto  md:px-10">
+    <header className={`fixed top-0 z-50 w-full ${bg}`}>
+      <div className="navbar py-0 w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="mr-1 lg:hidden">
@@ -70,9 +70,9 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link className="flex gap-2 place-items-center font-bold text-lg md:text-4xl">
-            <FaTv />
-            Flux
+          <Link className="flex gap-2 items-center justify-center ">
+            <FaTv className="text-4xl" />
+            <span className="font-bold text-2xl">Flux</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
