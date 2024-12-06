@@ -12,9 +12,9 @@ const Footer = () => {
           </p>
         </aside>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
-        <nav>
+        <nav className="flex gap-4">
           <h6 className="footer-title">Social</h6>
-          <div className="grid grid-flow-col gap-4">
+          <div className="flex gap-2">
             <a
               href="https://github.com/adnansyed101"
               target="_blank"
