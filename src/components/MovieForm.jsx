@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
+import { toast } from "react-toastify";
 
 const MovieForm = () => {
   const genres = [
@@ -23,6 +24,7 @@ const MovieForm = () => {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm({
     imgLink: "",
     title: "",
@@ -45,11 +47,14 @@ const MovieForm = () => {
       body: JSON.stringify(newMovie),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        reset();
+        toast.success(`${data.data.title} movie created`);
+      });
   };
 
   return (
-    <section className="my-10 flex flex-col items-center">
+    <section className="flex flex-col items-center pt-20 pb-10">
       <div className="text-center">
         <h1 className="text-xl md:text-3xl font-semibold mb-5">Add Movie</h1>
       </div>
