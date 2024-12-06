@@ -5,3 +5,18 @@
 svg.star-svg {
   display: inline;
 }
+
+.dropdown.dropdown-center.dropdown-right .dropdown-content,
+.dropdown-center.dropdown-left .dropdown-content {
+  @apply top-1/2 transform -translate-y-1/2;
+}
+
+.dropdown-center.dropdown-bottom .dropdown-content,
+.dropdown-center.dropdown-top .dropdown-content {
+  @apply left-1/2 transform -translate-x-1/2;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
