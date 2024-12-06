@@ -24,11 +24,11 @@ const MovieForm = () => {
     control,
     formState: { errors },
   } = useForm({
-    imgUrl: "",
+    imgLink: "",
     title: "",
     genre: "Pick One",
     duration: 0,
-    releaseYear: "",
+    year: "",
     summary: "",
   });
 
@@ -37,10 +37,16 @@ const MovieForm = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data, rating);
-  };
+    const newMovie = { ...data, rating };
 
-  console.log(errors);
+    fetch("/api/movies", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newMovie),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <section className="my-10 flex flex-col items-center">
@@ -56,7 +62,7 @@ const MovieForm = () => {
             </div>
             <input
               type="text"
-              {...register("imgUrl", {
+              {...register("imgLink", {
                 required: "This is required",
                 pattern: {
                   value:
@@ -67,8 +73,8 @@ const MovieForm = () => {
               className="input input-bordered"
               placeholder="Movie Image Link"
             />
-            {errors.imgUrl && (
-              <p className="text-error">{errors.imgUrl?.message}</p>
+            {errors.imgLink && (
+              <p className="text-error">{errors.imgLink?.message}</p>
             )}
           </div>
           {/* Title */}
@@ -147,7 +153,7 @@ const MovieForm = () => {
             </div>
             <input
               type="number"
-              {...register("realeaseDate", {
+              {...register("year", {
                 required: "This is required",
                 min: {
                   value: 1896,
@@ -157,8 +163,8 @@ const MovieForm = () => {
               className="input input-bordered"
               placeholder="Only Year"
             />
-            {errors.realeaseDate && (
-              <p className="text-error">{errors.realeaseDate?.message}</p>
+            {errors.year && (
+              <p className="text-error">{errors.year?.message}</p>
             )}
           </div>
           {/* Rating */}
@@ -170,6 +176,7 @@ const MovieForm = () => {
               onClick={handleRating}
               allowFraction={true}
               transition={true}
+              iconsCount={10}
             />
           </div>
           <label className="form-control">
