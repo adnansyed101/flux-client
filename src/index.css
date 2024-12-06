@@ -1,15 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  @apply bg-midnightBlue;
-}
-
-.primary-btn {
-  @apply btn bg-goldenYellow text-white hover:bg-goldenYellow hover:scale-110 border-none;
-}
-
-.secondary-btn {
-  @apply btn bg-lightGray text-black hover:bg-lightGray hover:scale-110 border-none;
-}
