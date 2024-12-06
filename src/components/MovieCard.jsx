@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 const MovieCard = ({ movie }) => {
   const { _id, imgLink, title, rating, duration } = movie;
   return (
-    <div className="card bg-midnightBlue shadow-xl">
-      <figure className="p-5">
-        <img src={imgLink} alt="Shoes" className="w-2/3 rounded-xl" />
+    <div className="card bg-base-100 shadow-xl">
+      <figure>
+        <img src={imgLink} alt="Movie" />
       </figure>
-      <div className="card-body pt-0">
+      <div className="card-body p-2">
         <h2 className="card-title">{title}</h2>
         <p>
           Rating: {rating} <br /> Duration: {duration} mins
         </p>
         <div className="card-actions">
-          <Link to={`/movie/${_id}`} className="primary-btn">
+          <Link to={`/movie/${_id}`} className="btn btn-primary">
             Details
           </Link>
         </div>
