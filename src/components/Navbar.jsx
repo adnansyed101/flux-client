@@ -36,16 +36,20 @@ const Navbar = () => {
           All Movies
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/addMovie" className="font-semibold text-lg">
-          Add Movie
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/favourite" className="font-semibold text-lg">
-          My Favourites
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink to="/addMovie" className="font-semibold text-lg">
+              Add Movie
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/favourite" className="font-semibold text-lg">
+              My Favourites
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -68,7 +72,9 @@ const Navbar = () => {
             tabIndex={0}
             className="dropdown-content menu bg-accent rounded-box z-[1] w-52 p-2 shadow"
           >
-            <li className="text-center mb-2 font-semibold text-white">{user?.displayName}</li>
+            <li className="text-center mb-2 font-semibold text-white">
+              {user?.displayName}
+            </li>
             <li>
               <button onClick={logOut} className="btn btn-sm btn-secondary">
                 Log Out
