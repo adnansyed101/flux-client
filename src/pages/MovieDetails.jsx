@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -10,8 +10,8 @@ const MovieDetails = () => {
   const [disabled, setDisabled] = useState(false);
   const { data: movie } = useLoaderData();
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // eslint-disable-next-line no-unused-vars
   const { _id, ...addMovie } = movie;
 
   const addToFav = () => {
@@ -24,6 +24,20 @@ const MovieDetails = () => {
       .then((data) => {
         setDisabled(true);
         toast.success(`${data.data.title} added to favourite`);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const deleteMovie = () => {
+    fetch(`/api/movies/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(`${data.message}`);
+        navigate("/allMovies");
       })
       .catch((err) => {
         console.log(err.message);
@@ -74,7 +88,7 @@ const MovieDetails = () => {
               >
                 <FaHeart /> Add to Favourite
               </button>
-              <button className="btn btn-error">
+              <button className="btn btn-error" onClick={deleteMovie}>
                 <FaRegTrashAlt /> Delete
               </button>
             </div>
