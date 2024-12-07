@@ -10,7 +10,7 @@ const AllMovies = () => {
     <>
       <Navbar />
       <div className="bg-accent py-20">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-5 gap-5">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-5">
           {movies.map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
