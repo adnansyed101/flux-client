@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -26,7 +26,7 @@ const MovieDetails = () => {
         toast.success(`${data.data.title} added to favourite`);
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -40,7 +40,7 @@ const MovieDetails = () => {
         navigate("/allMovies");
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -64,7 +64,7 @@ const MovieDetails = () => {
             </h1>
             {/* Genre, Duration, Year, Rating */}
 
-            <div className="text-sm text-secondary mb-4 space-x-2">
+            <div className="text-sm text-secondary mb-4 space-x-2 flex justify-center">
               <span className="badge badge-outline badge-primary">
                 {movie.genre}
               </span>
@@ -80,7 +80,7 @@ const MovieDetails = () => {
               {movie.summary}
             </p>
             {/* Buttons */}
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center flex-wrap">
               <button
                 className="btn btn-primary"
                 onClick={addToFav}
@@ -89,8 +89,11 @@ const MovieDetails = () => {
                 <FaHeart /> Add to Favourite
               </button>
               <button className="btn btn-error" onClick={deleteMovie}>
-                <FaRegTrashAlt /> Delete
+                <FaRegTrashAlt /> Delete Movie
               </button>
+              <Link to={`/update/movie/${_id}`} className="btn btn-secondary">
+                Update Movie
+              </Link>
             </div>
           </div>
         </div>
