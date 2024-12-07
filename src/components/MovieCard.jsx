@@ -10,10 +10,10 @@ const MovieCard = ({ movie }) => {
       </figure>
       <div className="card-body justify-between">
         <div className="space-y-4">
-          <h2 className="card-title text-2xl">{title}</h2>
-          <p className="text-xl">Rating: {rating}</p>
-          <p className="text-xl">Duration: {duration} mins</p>
-          <p className="text-xl">Genre: {genre}</p>
+          <h2 className="card-title lg:text-lg xl:text-2xl">{title}</h2>
+          <p className="xl:text-xl">Rating: {rating}</p>
+          <p className="xl:text-xl">Duration: {duration} mins</p>
+          <p className="xl:text-xl">Genre: {genre}</p>
         </div>
         <div className="card-actions">
           <Link to={`/movie/${_id}`} className="btn btn-primary">

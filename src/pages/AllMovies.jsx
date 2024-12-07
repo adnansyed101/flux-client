@@ -9,6 +9,10 @@ const AllMovies = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     fetch(`/api/movies?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
@@ -19,8 +23,8 @@ const AllMovies = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-accent py-20">
-        <div className="flex justify-between container mx-auto mb-2">
+      <div className="bg-accent py-20 px-2">
+        <div className="flex flex-col md:flex-row justify-between container mx-auto mb-2">
           <div></div>
           <h1 className="text-2xl text-center font-bold mb-4">All Movies</h1>
           <label className="input input-bordered flex items-center gap-2">

@@ -24,6 +24,10 @@ const SignIn = () => {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     document.title = "Flux | Login";
   }, []);
 
@@ -68,7 +72,7 @@ const SignIn = () => {
       <div className="hero bg-gradient-to-br from-primary to-accent min-h-screen">
         <div className="hero-content">
           <div className="card bg-slate-100 shadow-2xl animate__animated animate__bounceInDown">
-            <div className="card-body">
+            <div className="card-body p-4 md:p-8">
               <form onSubmit={handleSubmit(onSubmit)} className="md:w-96">
                 <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
                   Sign In
@@ -110,7 +114,7 @@ const SignIn = () => {
                   </label>
                 </div>
                 <p>
-                  Do not have an account ?{" "}
+                  Do not have an account?{" "}
                   <Link to="/signup" className="text-accent">
                     Sign Up
                   </Link>

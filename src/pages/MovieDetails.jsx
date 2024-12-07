@@ -2,7 +2,7 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
 
@@ -11,8 +11,11 @@ const MovieDetails = () => {
   const { data: movie } = useLoaderData();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const { _id, ...addMovie } = movie;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const addToFav = () => {
     fetch("/api/movies/favourites", {
@@ -47,8 +50,8 @@ const MovieDetails = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gradient-to-br from-primary to-accent min-h-screen flex place-items-center">
-        <div className="grid grid-cols-2 gap-4 bg-base-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+      <div className="bg-gradient-to-br from-primary to-accent min-h-screen flex place-items-center py-20 px-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-base-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
           {/* Movie Image */}
           <figure>
             <img

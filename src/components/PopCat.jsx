@@ -1,8 +1,8 @@
 const PopCat = () => {
   return (
     <section className="container mx-auto py-10">
-      <div className="flex gap-10">
-        <div className="grid grid-cols-4 gap-2 grid-rows-[200px_200px_200px]">
+      <div className="flex flex-col lg:flex-row gap-5 md:gap-10">
+        <div className="grid grid-cols-4 gap-2 grid-rows-[200px_200px_200px] px-4">
           {/* Category */}
           <div className="card image-full shadow-xl col-span-2">
             <figure>

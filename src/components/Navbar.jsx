@@ -85,11 +85,11 @@ const Navbar = () => {
         </div>
       </div>
     ) : (
-      <div className="space-x-2">
-        <Link to="/signin" className="btn btn-primary">
+      <div className="flex flex-col gap-1">
+        <Link to="/signin" className="btn btn-xs md:btn-md btn-primary">
           Sign In
         </Link>
-        <Link to="/signup" className="btn btn-secondary">
+        <Link to="/signup" className="btn btn-xs md:btn-md  btn-secondary">
           Sign Up
         </Link>
       </div>

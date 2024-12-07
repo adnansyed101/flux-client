@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PricingHero from "../components/PricingHero";
 import PricingCard from "../components/PricingCard";
+import { useEffect } from "react";
 
 const PricingPage = () => {
   const plans = [
@@ -49,6 +50,10 @@ const PricingPage = () => {
       ],
     },
   ];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

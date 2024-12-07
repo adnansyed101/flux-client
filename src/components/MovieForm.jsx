@@ -63,12 +63,12 @@ const MovieForm = () => {
   };
 
   return (
-    <section className="flex flex-col items-center pt-20 pb-10">
+    <section className="flex flex-col items-center py-20 px-2">
       <div className="text-center">
         <h1 className="text-xl md:text-3xl font-semibold mb-5">Add Movie</h1>
       </div>
-      <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl">
-        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+      <div className="card bg-base-100 w-full max-w-lg shadow-2xl">
+        <form className="card-body p-4 md:p-8" onSubmit={handleSubmit(onSubmit)}>
           {/* Image Link */}
           <div className="form-control">
             <div className="label">
@@ -195,7 +195,6 @@ const MovieForm = () => {
               onClick={handleRating}
               allowFraction={true}
               transition={true}
-              iconsCount={10}
             />
           </div>
           <label className="form-control">

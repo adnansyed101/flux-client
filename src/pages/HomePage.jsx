@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Banner from "../components/Banner";
 import Featured from "../components/Featured";
 import Footer from "../components/Footer";
@@ -10,6 +10,10 @@ import Loading from "../components/Loading";
 
 const HomePage = () => {
   const { loading } = useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading) {
     return <Loading />;

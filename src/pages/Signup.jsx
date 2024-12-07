@@ -26,6 +26,10 @@ const Signup = () => {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     document.title = "Flux | Sign Up";
   }, []);
 
@@ -87,8 +91,8 @@ const Signup = () => {
       <section className="hero bg-gradient-to-br from-primary to-accent min-h-screen pt-20">
         <div className="hero-content">
           <div className="card bg-base-100 shadow-2xl animate__animated animate__bounceInUp">
-            <div className="card-body">
-              <form className="min-w-96" onSubmit={handleSubmit(onSubmit)}>
+            <div className="card-body p-4 md:p-8">
+              <form className="md:w-96" onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
                   Sign Up
                 </h1>
