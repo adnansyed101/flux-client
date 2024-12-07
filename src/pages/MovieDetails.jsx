@@ -2,10 +2,33 @@ import { useLoaderData } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { AuthContext } from "../provider/AuthProvider";
 
 const MovieDetails = () => {
-  const data = useLoaderData();
-  const { data: movie } = data;
+  const [disabled, setDisabled] = useState(false);
+  const { data: movie } = useLoaderData();
+  const { user } = useContext(AuthContext);
+
+  // eslint-disable-next-line no-unused-vars
+  const { _id, ...addMovie } = movie;
+
+  const addToFav = () => {
+    fetch("/api/movies/favourites", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...addMovie, email: user.email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setDisabled(true);
+        toast.success(`${data.data.title} added to favourite`);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <>
@@ -44,11 +67,15 @@ const MovieDetails = () => {
             </p>
             {/* Buttons */}
             <div className="flex gap-4 justify-center">
+              <button
+                className="btn btn-primary"
+                onClick={addToFav}
+                disabled={disabled}
+              >
+                <FaHeart /> Add to Favourite
+              </button>
               <button className="btn btn-error">
                 <FaRegTrashAlt /> Delete
-              </button>
-              <button className="btn btn-primary">
-                <FaHeart /> Add to Favourite
               </button>
             </div>
           </div>
