@@ -1,7 +1,28 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../provider/AuthProvider";
 
 const FavMovieCard = ({ movie }) => {
-  const { imgLink, title, genre, duration, year, rating } = movie;
+  const { imgLink, title, genre, duration, year, rating, _id } = movie;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const deleteFavMovie = () => {
+    fetch(`/api/movies/favourites/${user.email}/${_id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.error(`${data.message}`);
+        navigate(`/favourites/${user.email}`);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="card bg-base-100 shadow-lg rounded-lg">
       {/* Movie Poster */}
@@ -25,8 +46,7 @@ const FavMovieCard = ({ movie }) => {
           <span className="font-semibold">Duration:</span> {duration} mins
         </p>
         <p className="text-sm text-gray-500">
-          <span className="font-semibold">Release Year:</span>{" "}
-          {year}
+          <span className="font-semibold">Release Year:</span> {year}
         </p>
         <p className="text-sm text-gray-500">
           <span className="font-semibold">Rating:</span> {rating}/10
@@ -34,7 +54,9 @@ const FavMovieCard = ({ movie }) => {
 
         {/* Delete Favorite Button */}
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-error btn-sm">Delete Favorite</button>
+          <button className="btn btn-error btn-sm" onClick={deleteFavMovie}>
+            Delete Favorite
+          </button>
         </div>
       </div>
     </div>
