@@ -19,7 +19,7 @@ const FavMovieCard = ({ movie }) => {
         navigate(`/favourites/${user.email}`);
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 
