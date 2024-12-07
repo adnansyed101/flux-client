@@ -6,6 +6,7 @@ import AllMovies from "../pages/AllMovies";
 import AddMovie from "../pages/AddMovie";
 import PrivateRoute from "./PrivateRoute";
 import MovieDetails from "../pages/MovieDetails";
+import Favourites from "../pages/Favourites";
 
 const router = createBrowserRouter([
   {
@@ -14,9 +15,18 @@ const router = createBrowserRouter([
     loader: () => fetch("/api/movies/featured"),
   },
   {
-    path: "/movies",
+    path: "/allMovies",
     element: <AllMovies />,
     loader: () => fetch("/api/movies"),
+  },
+  {
+    path: "/favourites/:email",
+    element: (
+      <PrivateRoute>
+        <Favourites />
+      </PrivateRoute>
+    ),
+    loader: ({ params }) => fetch(`/api/movies/favourites/${params.email}`),
   },
   {
     path: "/movie/:id",
