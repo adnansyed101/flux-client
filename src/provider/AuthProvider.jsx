@@ -22,6 +22,11 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const [theme, setTheme] = useState("autumn");
+
+  const toggleTheme = () => {
+    setTheme(theme === "autumn" ? "business" : "autumn");
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -62,6 +67,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    theme,
     setUser,
     setLoading,
     createNewUser,
@@ -70,6 +76,7 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     createUserWithGoogle,
     changePassword,
+    toggleTheme,
   };
 
   return (

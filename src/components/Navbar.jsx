@@ -1,17 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaTv } from "react-icons/fa6";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { IoPersonCircle } from "react-icons/io5";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState("autumn");
-
-  const toggleTheme = () => {
-    setTheme(theme === "autumn" ? "business" : "autumn");
-  };
+  const { user, logOut, theme, toggleTheme } = useContext(AuthContext);
 
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
