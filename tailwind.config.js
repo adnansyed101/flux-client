@@ -4,5 +4,5 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {},
   plugins: [daisyui],
-  daisyui: { themes: ["autumn", "business"] },
+  daisyui: { themes: ["cmyk", "business"] },
 };
