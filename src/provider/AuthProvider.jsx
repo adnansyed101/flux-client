@@ -23,8 +23,6 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
 
-  console.log(user);
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
