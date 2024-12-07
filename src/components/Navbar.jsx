@@ -16,7 +16,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/movies" className="font-semibold text-lg">
+        <NavLink to="/allMovies" className="font-semibold text-lg">
           All Movies
         </NavLink>
       </li>
@@ -28,7 +28,10 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/favourite" className="font-semibold text-lg">
+            <NavLink
+              to={`/favourites/${user.email}`}
+              className="font-semibold text-lg"
+            >
               My Favourites
             </NavLink>
           </li>
