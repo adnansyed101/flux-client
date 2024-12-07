@@ -6,14 +6,14 @@ const Footer = () => {
     <footer className="bg-base-300 py-2">
       <div className="flex justify-between items-center container mx-auto">
         <aside>
-          <p className="flex gap-2 items-center justify-center ">
+          <p className="flex gap-2 items-center justify-center">
             <FaTv className="text-4xl" />
             <span className="font-bold text-2xl">Flux</span>
           </p>
         </aside>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         <nav className="flex gap-4">
-          <h6 className="footer-title">Social</h6>
+          <h6 className="footer-title">Scoial</h6>
           <div className="flex gap-2">
             <a
               href="https://github.com/adnansyed101"
@@ -30,6 +30,7 @@ const Footer = () => {
               <BsMessenger />
             </a>
           </div>
+          <span>Contact Us: Flux@gmail.com</span>
         </nav>
       </div>
     </footer>
