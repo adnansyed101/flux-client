@@ -44,6 +44,10 @@ const MovieForm = () => {
   };
 
   const onSubmit = (data) => {
+    if (rating === 0) {
+      toast.warn("Rating cannot be 0");
+      return;
+    }
     const newMovie = { ...data, rating };
 
     fetch("/api/movies", {
