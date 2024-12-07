@@ -90,7 +90,7 @@ const Signup = () => {
       <Navbar />
       <section className="hero bg-gradient-to-br from-primary to-accent min-h-screen pt-20">
         <div className="hero-content">
-          <div className="card bg-base-100 shadow-2xl animate__animated animate__bounceInUp">
+          <div className="card bg-accent shadow-2xl animate__animated animate__bounceInUp">
             <div className="card-body p-4 md:p-8">
               <form className="md:w-96" onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
@@ -197,7 +197,7 @@ const Signup = () => {
                 </div>
               </form>
               <button
-                className="btn btn-outline btn-accent"
+                className="btn btn-secondary"
                 onClick={handleGoogleSignUp}
               >
                 <BsGoogle /> Sign Up Using Google

@@ -11,7 +11,12 @@ const PricingPage = () => {
       name: "Basic Plan",
       description: "Ideal for individuals starting out",
       price: 9.99,
-      features: ["Access to core features", "5 GB Storage", "Email Support"],
+      features: [
+        "Stream Unlimited movie",
+        "Access to core features",
+        "5 GB Storage",
+        "Email Support",
+      ],
     },
     {
       id: 2,

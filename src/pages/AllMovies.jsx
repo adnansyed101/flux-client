@@ -24,9 +24,7 @@ const AllMovies = () => {
     <>
       <Navbar />
       <div className="bg-accent py-20 px-2">
-        <div className="flex flex-col md:flex-row justify-between container mx-auto mb-2">
-          <div></div>
-          <h1 className="text-2xl text-center font-bold mb-4">All Movies</h1>
+        <div className="flex flex-col md:flex-row justify-center container mx-auto mb-2">
           <label className="input input-bordered flex items-center gap-2">
             <input
               type="text"

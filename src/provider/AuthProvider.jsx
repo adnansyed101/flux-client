@@ -22,10 +22,10 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  const [theme, setTheme] = useState("autumn");
+  const [theme, setTheme] = useState("cmky");
 
   const toggleTheme = () => {
-    setTheme(theme === "autumn" ? "business" : "autumn");
+    setTheme(theme === "cmyk" ? "business" : "cmyk");
   };
 
   useEffect(() => {

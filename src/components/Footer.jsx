@@ -3,7 +3,7 @@ import { FaTv } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-300 p-2">
+    <footer className="bg-primary p-2">
       <div className="flex flex-col md:flex-row justify-between items-center container mx-auto">
         <aside>
           <p className="flex gap-2 items-center justify-center">

@@ -80,8 +80,8 @@ const Navbar = () => {
         </div>
       </div>
     ) : (
-      <div className="flex flex-col gap-1">
-        <Link to="/signin" className="btn btn-xs md:btn-md btn-primary">
+      <div className="flex flex-col md:flex-row gap-1">
+        <Link to="/signin" className="btn btn-xs md:btn-md btn-accent">
           Sign In
         </Link>
         <Link to="/signup" className="btn btn-xs md:btn-md  btn-secondary">
@@ -91,7 +91,7 @@ const Navbar = () => {
     );
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-base-300">
+    <header className="w-full fixed top-0 z-50 bg-primary">
       <div className="navbar py-0 w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
