@@ -31,6 +31,11 @@ const Navbar = () => {
           All Movies
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/pricing" className="font-semibold text-lg">
+          Pricing
+        </NavLink>
+      </li>
       {user && (
         <>
           <li>
