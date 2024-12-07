@@ -10,6 +10,7 @@ import Favourites from "../pages/Favourites";
 import UpdateMoviePage from "../pages/UpdateMoviePage";
 import Error from "../components/Error";
 import PricingPage from "../pages/PricingPage";
+import ForgetPassword from "../components/ForgetPassword";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/forget-password",
+    element: <ForgetPassword />,
   },
   {
     path: "*",
