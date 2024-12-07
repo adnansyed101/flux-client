@@ -12,7 +12,7 @@ const Featured = () => {
         </h1>
       </div>
       <div className="bg-accent py-10">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-6 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 px-2">
           {movies.map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
