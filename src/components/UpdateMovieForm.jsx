@@ -37,6 +37,11 @@ const UpdateMovieForm = () => {
     },
   });
 
+  const years = Array.from(
+    { length: new Date().getFullYear() - 1900 + 1 },
+    (_, i) => 1900 + i
+  );
+
   const handleRating = (rate) => {
     setRating(rate);
   };
@@ -155,17 +160,22 @@ const UpdateMovieForm = () => {
             <div className="label">
               <span className="label-text">Release Year</span>
             </div>
-            <input
-              type="number"
-              {...register("year", {
-                required: "This is required",
-                min: {
-                  value: 1896,
-                  message: "At least 60 mins",
-                },
-              })}
-              className="input input-bordered"
-              placeholder="Only Year"
+            <Controller
+              name="year"
+              control={control}
+              rules={{ required: "This is required" }}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  defaultValue={"Select Year"}
+                  className="select select-bordered"
+                >
+                  <option disabled>Select Year</option>
+                  {years.map((year) => (
+                    <option key={year}>{year}</option>
+                  ))}
+                </select>
+              )}
             />
             {errors.year && (
               <p className="text-error">{errors.year?.message}</p>
