@@ -9,12 +9,17 @@ import MovieDetails from "../pages/MovieDetails";
 import Favourites from "../pages/Favourites";
 import UpdateMoviePage from "../pages/UpdateMoviePage";
 import Error from "../components/Error";
+import PricingPage from "../pages/PricingPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
     loader: () => fetch("/api/movies/featured"),
+  },
+  {
+    path: "/pricing",
+    element: <PricingPage />,
   },
   {
     path: "/allMovies",
