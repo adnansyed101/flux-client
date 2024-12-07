@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
 const Featured = () => {
@@ -16,6 +16,11 @@ const Featured = () => {
           {movies.map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
+        </div>
+        <div className="text-center mt-4">
+          <Link to={"/allMovies"} className="btn btn-primary">
+            See All Movie
+          </Link>
         </div>
       </div>
     </section>
