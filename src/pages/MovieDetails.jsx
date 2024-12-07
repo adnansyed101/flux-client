@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -20,30 +21,36 @@ const MovieDetails = () => {
             />
           </figure>
           <div>
-            <div>
-              {/* Title */}
-              <h1 className="text-3xl font-bold text-primary mb-2 text-center">
-                {movie.title}
-              </h1>
-              {/* Genre, Duration, Year, Rating */}
-              <div className="text-sm text-secondary mb-4 space-x-2">
-                <span className="badge badge-outline badge-primary">
-                  {movie.genre}
-                </span>
-                <span className="badge badge-outline">
-                  {movie.duration} mins
-                </span>
-                <span className="badge badge-outline">{movie.year}</span>
-                <span className="badge badge-outline badge-accent">
-                  Rating: {movie.rating}/10
-                </span>
-              </div>
+            {/* Title */}
+            <h1 className="text-3xl font-bold text-primary mb-2 text-center">
+              {movie.title}
+            </h1>
+            {/* Genre, Duration, Year, Rating */}
+
+            <div className="text-sm text-secondary mb-4 space-x-2">
+              <span className="badge badge-outline badge-primary">
+                {movie.genre}
+              </span>
+              <span className="badge badge-outline">{movie.duration} mins</span>
+              <span className="badge badge-outline">{movie.year}</span>
+              <span className="badge badge-outline badge-accent">
+                Rating: {movie.rating}/10
+              </span>
             </div>
 
             {/* Summary */}
-            <p className="text-center text-base text-gray-600">
+            <p className="text-center text-base text-gray-600 mb-4">
               {movie.summary}
             </p>
+            {/* Buttons */}
+            <div className="flex gap-4 justify-center">
+              <button className="btn btn-error">
+                <FaRegTrashAlt /> Delete
+              </button>
+              <button className="btn btn-primary">
+                <FaHeart /> Add to Favourite
+              </button>
+            </div>
           </div>
         </div>
       </div>
