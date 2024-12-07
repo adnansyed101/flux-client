@@ -13,8 +13,6 @@ const Navbar = () => {
     setTheme(theme === "autumn" ? "business" : "autumn");
   };
 
-  console.log(theme);
-
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
   }, [theme]);
