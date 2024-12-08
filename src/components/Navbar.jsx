@@ -105,7 +105,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link className="flex gap-2 items-center justify-center ">
+          <Link to={"/"} className="flex gap-2 items-center justify-center ">
             <FaTv className="text-4xl" />
             <span className="font-bold text-2xl">Flux</span>
           </Link>
