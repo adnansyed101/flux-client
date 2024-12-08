@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 const PricingCard = ({ plan }) => {
+  const handlePricingBtn = () => {
+    toast.success(`${plan.name} has started`);
+  };
+
   return (
     <div className="card bg-base-100 shadow-lg">
       {/* Card Header */}
@@ -29,7 +34,9 @@ const PricingCard = ({ plan }) => {
         </ul>
 
         {/* Call to Action */}
-        <button className="btn btn-primary w-full">Choose Plan</button>
+        <button className="btn btn-primary w-full" onClick={handlePricingBtn}>
+          Choose Plan
+        </button>
       </div>
     </div>
   );
