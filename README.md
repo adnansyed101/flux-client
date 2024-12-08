@@ -1,8 +1,19 @@
-# React + Vite
+# Flux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The website is created for completing Programming Hero Assignment 10. The website mainly features CRUD operations. Users can also login and create movies.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- Create an Account
+- Register / Login using Google.
+- Change password while clicking on forget password.
+- Authenticated users can Create/ Read/ Update/ Delete Movies.
+- Users can also add movies to favourites.
+- Toggle Light and Dark Mode.
+
+## Technologies used
+
+- Used react-hook-form on all the forms.
+- Use animate CSS for animation.
