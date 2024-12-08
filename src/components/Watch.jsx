@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import watchImg from "../assets/watch.svg";
 
 const Watch = () => {
@@ -14,7 +15,9 @@ const Watch = () => {
             Movie websites are the ultimate guide for cinephiles, providing
             everything from showtimes to streaming options at your fingertips.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <Link to={"/addMovie"} className="btn btn-primary">
+            Get Started
+          </Link>
         </div>
       </div>
     </div>
