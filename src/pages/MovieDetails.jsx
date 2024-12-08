@@ -51,7 +51,7 @@ const MovieDetails = () => {
     <>
       <Navbar />
       <div className="bg-gradient-to-br from-primary to-accent min-h-screen flex place-items-center py-20 px-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-base-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-base-100 p-6 rounded-lg shadow-lg max-w-5xl mx-auto">
           {/* Movie Image */}
           <figure>
             <img
@@ -67,13 +67,13 @@ const MovieDetails = () => {
             </h1>
             {/* Genre, Duration, Year, Rating */}
 
-            <div className="text-sm text-secondary mb-4 space-x-2 flex justify-center">
-              <span className="badge badge-outline badge-primary">
+            <div className="text-sm text-secondary mb-4 grid grid-cols-2 lg:grid-cols-4 place-items-center gap-2">
+              <span className="badge badge-outline badge-primary w-full">
                 {movie.genre}
               </span>
-              <span className="badge badge-outline">{movie.duration} mins</span>
-              <span className="badge badge-outline">{movie.year}</span>
-              <span className="badge badge-outline badge-accent">
+              <span className="badge badge-outline w-full">{movie.duration} mins</span>
+              <span className="badge badge-outline w-full">{movie.year}</span>
+              <span className="badge badge-outline badge-accent w-full">
                 Rating: {movie.rating}/10
               </span>
             </div>
