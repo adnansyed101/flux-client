@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  const [theme, setTheme] = useState("cmky");
+  const [theme, setTheme] = useState("cmyk");
 
   const toggleTheme = () => {
     setTheme(theme === "cmyk" ? "business" : "cmyk");
