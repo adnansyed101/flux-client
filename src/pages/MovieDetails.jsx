@@ -18,7 +18,7 @@ const MovieDetails = () => {
   }, []);
 
   const addToFav = () => {
-    fetch("/api/movies/favourites", {
+    fetch("https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...addMovie, email: user.email }),
@@ -34,7 +34,7 @@ const MovieDetails = () => {
   };
 
   const deleteMovie = () => {
-    fetch(`/api/movies/${_id}`, {
+    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

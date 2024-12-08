@@ -50,7 +50,7 @@ const MovieForm = () => {
     }
     const newMovie = { ...data, rating };
 
-    fetch("/api/movies", {
+    fetch("https://b10-a10-server-side-adnansyed101.vercel.app/api/movies", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newMovie),

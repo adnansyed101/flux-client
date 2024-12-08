@@ -16,7 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    loader: () => fetch("/api/movies/featured"),
+    loader: () =>
+      fetch(
+        "https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/featured"
+      ),
   },
   {
     path: "/pricing",
@@ -33,7 +36,10 @@ const router = createBrowserRouter([
         <Favourites />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`/api/movies/favourites/${params.email}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites/${params.email}`
+      ),
   },
   {
     path: "/movie/:id",
@@ -42,7 +48,10 @@ const router = createBrowserRouter([
         <MovieDetails />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`/api/movies/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${params.id}`
+      ),
   },
   {
     path: "/update/movie/:id",
@@ -51,7 +60,10 @@ const router = createBrowserRouter([
         <UpdateMoviePage />
       </PrivateRoute>
     ),
-    loader: ({ params }) => fetch(`/api/movies/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${params.id}`
+      ),
   },
   {
     path: "/addMovie",

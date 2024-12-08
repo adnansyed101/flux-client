@@ -10,7 +10,7 @@ const FavMovieCard = ({ movie }) => {
   const navigate = useNavigate();
 
   const deleteFavMovie = () => {
-    fetch(`/api/movies/favourites/${user.email}/${_id}`, {
+    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites/${user.email}/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -13,7 +13,7 @@ const AllMovies = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`/api/movies?search=${search}`)
+    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data.data);

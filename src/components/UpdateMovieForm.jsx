@@ -49,7 +49,7 @@ const UpdateMovieForm = () => {
   const onSubmit = (data) => {
     const newMovie = { ...data, rating };
 
-    fetch(`/api/movies/${movie._id}`, {
+    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${movie._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newMovie),
