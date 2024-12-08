@@ -1,5 +1,5 @@
 import { BsGoogle } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const SignIn = () => {
-  const { login, setUser, createUserWithGoogle, loading, setLoading } =
+  const { user, login, setUser, createUserWithGoogle, loading, setLoading } =
     useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -61,6 +61,10 @@ const SignIn = () => {
         toast.error(errorCode);
       });
   };
+
+  if (user && user?.email) {
+    return <Navigate to={"/"} />;
+  }
 
   if (loading) {
     return <Loading />;
@@ -125,10 +129,7 @@ const SignIn = () => {
                   </button>
                 </div>
               </form>
-              <button
-                onClick={handleGoogleLogin}
-                className="btn btn-secondary"
-              >
+              <button onClick={handleGoogleLogin} className="btn btn-secondary">
                 <BsGoogle /> Login Using Google
               </button>
             </div>

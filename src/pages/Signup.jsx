@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
 import "animate.css";
@@ -13,8 +13,13 @@ import Footer from "../components/Footer";
 const Signup = () => {
   const [showPwd, setShowPwd] = useState(false);
   const [showVerifyPwd, setShowVerifyPwd] = useState(false);
-  const { createNewUser, setUser, updateUserProfile, createUserWithGoogle } =
-    useContext(AuthContext);
+  const {
+    user,
+    createNewUser,
+    setUser,
+    updateUserProfile,
+    createUserWithGoogle,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -84,6 +89,10 @@ const Signup = () => {
         toast.error(errorCode);
       });
   };
+
+  if (user && user?.email) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>
