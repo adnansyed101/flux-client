@@ -29,6 +29,11 @@ const Navbar = () => {
           Pricing
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/contactus" className="font-semibold text-lg">
+          Contact Us
+        </NavLink>
+      </li>
       {user && (
         <>
           <li>
