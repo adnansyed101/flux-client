@@ -3,7 +3,6 @@ import { FaBars } from "react-icons/fa";
 import { FaTv } from "react-icons/fa6";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { IoPersonCircle } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOut, theme, toggleTheme } = useContext(AuthContext);
@@ -55,34 +54,32 @@ const Navbar = () => {
   );
 
   const logBtns =
-    user && user.email ? (
-      <div className="flex gap-1 md:gap-4 items-center">
-        <div className="dropdown dropdown-hover dropdown-bottom dropdown-center mr-10">
-          <div tabIndex={0} role="button">
-            <div className="avatar flex place-items-center">
-              <div className="w-12 rounded-full">
-                {user && user?.photoURL ? (
-                  <img src={user.photoURL} alt="User Image" />
-                ) : (
-                  <IoPersonCircle />
-                )}
-              </div>
-            </div>
+    user && user?.email ? (
+      <div className="dropdown dropdown-end">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
+          <div className="w-10 rounded-full">
+            <img
+              alt="Photo"
+              src={user?.photoURL}
+              referrerPolicy="no-referrer"
+            />
           </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu bg-accent rounded-box z-[1] w-52 p-2 shadow"
-          >
-            <li className="text-center mb-2 font-semibold text-white">
-              {user?.displayName}
-            </li>
-            <li>
-              <button onClick={logOut} className="btn btn-sm btn-secondary">
-                Log Out
-              </button>
-            </li>
-          </ul>
         </div>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+        >
+          <li className="text-center mb-2">{user?.displayName}</li>
+          <li>
+            <button onClick={logOut} className="btn btn-warning btn-sm">
+              Logout
+            </button>
+          </li>
+        </ul>
       </div>
     ) : (
       <div className="flex flex-col md:flex-row gap-1">
