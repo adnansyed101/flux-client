@@ -5,7 +5,7 @@ const Slide = ({ content }) => {
   const { imgURl, title, description } = content;
   return (
     <div
-      className="hero text-white min-h-screen"
+      className="hero text-white min-h-[calc(100vh-100px)]"
       style={{
         backgroundImage: `url(${imgURl})`,
       }}
