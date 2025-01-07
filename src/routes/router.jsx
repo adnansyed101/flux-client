@@ -11,6 +11,7 @@ import UpdateMoviePage from "../pages/UpdateMoviePage";
 import Error from "../components/Error";
 import PricingPage from "../pages/PricingPage";
 import ForgetPassword from "../components/ForgetPassword";
+import ContactUsPage from "../pages/ContactUsPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/pricing",
     element: <PricingPage />,
+  },
+  {
+    path: "/contactus",
+    element: <ContactUsPage />,
   },
   {
     path: "/allMovies",
