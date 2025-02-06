@@ -1,11 +1,13 @@
 # Flux
 
-The website is created for completing Programming Hero Assignment 10. The website mainly features CRUD operations. Users can also login and create movies.
+Flux is a website where users can see all movies inserted by other users. Users with account can also create movies and add movies to their favourite. The website mainly features CRUD operations.
 
 ## [Live Link](https://flux-86bc5.web.app/)
 
 ### Features
+
 ---
+
 - Create an Account
 - Register / Login using Google.
 - Change password while clicking on forget password.
@@ -14,8 +16,27 @@ The website is created for completing Programming Hero Assignment 10. The websit
 - Toggle Light and Dark Mode.
 
 ### Technologies used
+
 ---
+
 - React
 - Express
 - Mongodb
 - Firebase
+- React Router DOM
+- DaisyUI
+
+### Dependencies Used:
+
+---
+
+- animate.css
+- react-hook-form
+- react-toastify
+- swiper
+
+### [Server Repo Link](https://github.com/adnansyed101/flux-server)
+
+---
+
+![Homepage](./public//homepage.PNG)
