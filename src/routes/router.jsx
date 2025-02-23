@@ -11,8 +11,8 @@ import UpdateMoviePage from "../pages/UpdateMoviePage";
 import Error from "../components/Error";
 import PricingPage from "../pages/PricingPage";
 import ForgetPassword from "../components/ForgetPassword";
-import ContactUsPage from "../pages/ContactUsPage";
 import Main from "../layout/Main";
+import ContactUs from "../pages/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -27,15 +27,27 @@ const router = createBrowserRouter([
         path: "pricing",
         element: <PricingPage />,
       },
+      {
+        path: "/contactus",
+        element: <ContactUs />,
+      },
+      {
+        path: "/allMovies",
+        element: <AllMovies />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword />,
+      },
     ],
-  },
-  {
-    path: "/contactus",
-    element: <ContactUsPage />,
-  },
-  {
-    path: "/allMovies",
-    element: <AllMovies />,
   },
   {
     path: "/favourites/:email",
@@ -80,18 +92,6 @@ const router = createBrowserRouter([
         <AddMovie />
       </PrivateRoute>
     ),
-  },
-  {
-    path: "/signin",
-    element: <SignIn />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/forget-password",
-    element: <ForgetPassword />,
   },
   {
     path: "*",
