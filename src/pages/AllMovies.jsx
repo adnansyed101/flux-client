@@ -1,28 +1,35 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import MovieCard from "../components/MovieCard";
 import { useEffect, useState } from "react";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Loading from "../components/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const AllMovies = () => {
-  const [movies, setMovies] = useState([]);
+  const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
+
+  const { data: allMovies, isLoading } = useQuery({
+    queryKey: ["allMovies", search, sort],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(
+        `/movies?search=${search}&sort=${sort}`
+      );
+      return data;
+    },
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    fetch(
-      `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies?search=${search}&sort=${sort}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setMovies(data.data);
-      });
-  }, [search, sort]);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
-    <div className="bg-accent py-20 px-2">
+    <div className="bg-accent py-20 px-2 h-screen">
       <div className="flex flex-col md:flex-row justify-center container mx-auto mb-2 gap-2">
         <label className="input input-bordered flex items-center gap-2">
           <input
@@ -47,7 +54,7 @@ const AllMovies = () => {
         </select>
       </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {movies.map((movie) => (
+        {allMovies.map((movie) => (
           <MovieCard key={movie._id} movie={movie} />
         ))}
       </div>
