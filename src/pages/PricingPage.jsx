@@ -1,5 +1,3 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import PricingHero from "../components/PricingHero";
 import PricingCard from "../components/PricingCard";
 import { useEffect } from "react";
@@ -62,7 +60,6 @@ const PricingPage = () => {
 
   return (
     <>
-      <Navbar />
       <PricingHero />
       <h1 className="text-center text-4xl font-semibold my-4 ">Pricing</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 p-8">
@@ -70,7 +67,6 @@ const PricingPage = () => {
           <PricingCard key={plan.id} plan={plan} />
         ))}
       </div>
-      <Footer />
     </>
   );
 };
