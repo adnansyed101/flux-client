@@ -50,16 +50,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/favourites/:email",
+    path: "/favourites/:uid",
     element: (
       <PrivateRoute>
         <Favourites />
       </PrivateRoute>
     ),
-    loader: ({ params }) =>
-      fetch(
-        `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites/${params.email}`
-      ),
   },
   {
     path: "/movie/:id",
@@ -68,10 +64,6 @@ const router = createBrowserRouter([
         <MovieDetails />
       </PrivateRoute>
     ),
-    loader: ({ params }) =>
-      fetch(
-        `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${params.id}`
-      ),
   },
   {
     path: "/update/movie/:id",
@@ -80,10 +72,6 @@ const router = createBrowserRouter([
         <UpdateMoviePage />
       </PrivateRoute>
     ),
-    loader: ({ params }) =>
-      fetch(
-        `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${params.id}`
-      ),
   },
   {
     path: "/addMovie",
