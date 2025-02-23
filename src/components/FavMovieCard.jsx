@@ -10,9 +10,12 @@ const FavMovieCard = ({ movie }) => {
   const navigate = useNavigate();
 
   const deleteFavMovie = () => {
-    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites/${user.email}/${_id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites/${user.email}/${_id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.error(`${data.message}`);
@@ -37,19 +40,18 @@ const FavMovieCard = ({ movie }) => {
       {/* Movie Details */}
       <div className="card-body">
         <h2 className="card-title text-primary">{title}</h2>
-
         {/* Genre, Duration, Year */}
-        <p className="text-sm text-gray-500 mb-2">
+        <p className="text-sm mb-2">
           <span className="font-semibold">Genre:</span> {genre}
         </p>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm">
           <span className="font-semibold">Duration:</span> {duration} mins
         </p>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm">
           <span className="font-semibold">Release Year:</span> {year}
         </p>
-        <p className="text-sm text-gray-500">
-          <span className="font-semibold">Rating:</span> {rating}/10
+        <p className="text-sm">
+          <span className="font-semibold">Rating:</span> {rating}/5
         </p>
 
         {/* Delete Favorite Button */}
