@@ -53,7 +53,7 @@ const Navbar = () => {
     </>
   );
 
-  const logBtns =
+  const navOptions =
     user && user?.email ? (
       <div className="dropdown dropdown-end">
         <div
@@ -116,7 +116,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 flex gap-2">{links}</ul>
         </div>
         <div className="navbar-end space-x-2">
-          {logBtns}
+          {navOptions}
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input
