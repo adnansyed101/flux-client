@@ -42,10 +42,18 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to={`/favourites/${user.email}`}
+              to={`/favourites/${user.uid}`}
               className="font-semibold text-lg"
             >
               My Favourites
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={`/myMovies/${user.uid}`}
+              className="font-semibold text-lg"
+            >
+              My Movies
             </NavLink>
           </li>
         </>
@@ -93,8 +101,8 @@ const Navbar = () => {
     );
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-primary">
-      <div className="navbar py-0 w-11/12 mx-auto">
+    <header className="w-full fixed top-0 z-50 bg-base-200 border border-b-black ">
+      <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="mr-1 lg:hidden">
