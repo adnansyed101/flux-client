@@ -7,8 +7,8 @@ import Loading from "./Loading";
 const Featured = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: favMovies, isLoading } = useQuery({
-    queryKey: ["favMovies"],
+  const { data: featuredMovies, isLoading } = useQuery({
+    queryKey: ["featuredMovies"],
     queryFn: async () => {
       const { data } = await axiosPublic.get(`/movies/featured`);
       return data;
@@ -26,7 +26,7 @@ const Featured = () => {
       </h1>
       <div className="bg-base-200 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 xl:gap-4 px-2">
-          {favMovies.map((movie) => (
+          {featuredMovies.map((movie) => (
             <MovieCard key={movie._id} movie={movie} />
           ))}
         </div>
