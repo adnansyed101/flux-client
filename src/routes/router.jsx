@@ -12,19 +12,22 @@ import Error from "../components/Error";
 import PricingPage from "../pages/PricingPage";
 import ForgetPassword from "../components/ForgetPassword";
 import ContactUsPage from "../pages/ContactUsPage";
+import Main from "../layout/Main";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-    loader: () =>
-      fetch(
-        "https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/featured"
-      ),
-  },
-  {
-    path: "/pricing",
-    element: <PricingPage />,
+    element: <Main />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "pricing",
+        element: <PricingPage />,
+      },
+    ],
   },
   {
     path: "/contactus",
