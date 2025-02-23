@@ -29,7 +29,7 @@ const AllMovies = () => {
   }
 
   return (
-    <div className="bg-accent py-20 px-2 h-screen">
+    <div className="bg-base-100 py-20 px-2 min-h-screen">
       <div className="flex flex-col md:flex-row justify-center container mx-auto mb-2 gap-2">
         <label className="input input-bordered flex items-center gap-2">
           <input
