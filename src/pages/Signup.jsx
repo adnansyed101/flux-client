@@ -7,8 +7,6 @@ import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
 import "animate.css";
 import { useForm } from "react-hook-form";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const Signup = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -95,128 +93,121 @@ const Signup = () => {
   }
 
   return (
-    <>
-      <Navbar />
-      <section className="hero bg-gradient-to-br from-primary to-accent min-h-screen pt-20">
-        <div className="hero-content">
-          <div className="card bg-accent shadow-2xl animate__animated animate__bounceInUp">
-            <div className="card-body p-4 md:p-8">
-              <form className="md:w-96" onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
-                  Sign Up
-                </h1>
-                {/* Photo-URL */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Name</span>
-                  </label>
+    <section className="hero bg-gradient-to-br from-primary to-accent min-h-screen pt-20">
+      <div className="hero-content">
+        <div className="card bg-accent shadow-2xl animate__animated animate__bounceInUp">
+          <div className="card-body p-4 md:p-8">
+            <form className="md:w-96" onSubmit={handleSubmit(onSubmit)}>
+              <h1 className="text-4xl md:text-5xl font-bold mb-2 text-center">
+                Sign Up
+              </h1>
+              {/* Photo-URL */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  {...register("name", {
+                    required: "This is required",
+                  })}
+                  type="text"
+                  className="input border-accent"
+                />
+                {errors.Name && (
+                  <p className="text-error">{errors.Name?.message}</p>
+                )}
+              </div>
+              {/* Photo-URL */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  {...register("photoURL", {
+                    required: "This is required",
+                  })}
+                  type="text"
+                  className="input border-accent"
+                  required
+                />
+              </div>
+              {/* Email */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  {...register("email", {
+                    required: "This is required",
+                  })}
+                  type="email"
+                  className="input border-accent"
+                  required
+                />
+              </div>
+              {/* Password */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <label className="input border-accent flex items-center gap-2">
                   <input
-                    {...register("name", {
+                    {...register("password", {
                       required: "This is required",
                     })}
-                    type="text"
-                    className="input border-accent"
+                    type={showPwd ? "text" : "password"}
+                    className="grow"
+                    autoComplete="off"
+                    required
                   />
-                  {errors.Name && (
-                    <p className="text-error">{errors.Name?.message}</p>
+                  {showPwd ? (
+                    <FaEyeSlash onClick={handleShowPwd} />
+                  ) : (
+                    <FaEye onClick={handleShowPwd} />
                   )}
-                </div>
-                {/* Photo-URL */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Photo URL</span>
-                  </label>
+                </label>
+              </div>
+              {/* Verify Password */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Verify Password</span>
+                </label>
+                <label className="input input-bordered flex items-center gap-2">
                   <input
-                    {...register("photoURL", {
+                    {...register("verifyPassword", {
                       required: "This is required",
                     })}
-                    type="text"
-                    className="input border-accent"
+                    type={showVerifyPwd ? "text" : "password"}
+                    className="grow"
+                    autoComplete="off"
                     required
                   />
-                </div>
-                {/* Email */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    {...register("email", {
-                      required: "This is required",
-                    })}
-                    type="email"
-                    className="input border-accent"
-                    required
-                  />
-                </div>
-                {/* Password */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <label className="input border-accent flex items-center gap-2">
-                    <input
-                      {...register("password", {
-                        required: "This is required",
-                      })}
-                      type={showPwd ? "text" : "password"}
-                      className="grow"
-                      autoComplete="off"
-                      required
-                    />
-                    {showPwd ? (
-                      <FaEyeSlash onClick={handleShowPwd} />
-                    ) : (
-                      <FaEye onClick={handleShowPwd} />
-                    )}
-                  </label>
-                </div>
-                {/* Verify Password */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Verify Password</span>
-                  </label>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <input
-                      {...register("verifyPassword", {
-                        required: "This is required",
-                      })}
-                      type={showVerifyPwd ? "text" : "password"}
-                      className="grow"
-                      autoComplete="off"
-                      required
-                    />
-                    {showVerifyPwd ? (
-                      <FaEyeSlash onClick={handleShowVerifyPwd} />
-                    ) : (
-                      <FaEye onClick={handleShowVerifyPwd} />
-                    )}
-                  </label>
-                </div>
-                <p className="mt-4">
-                  Already have an account ?{" "}
-                  <Link to="/signin" className="text-accent">
-                    Sign In
-                  </Link>
-                </p>
-                <div className="form-control mt-4">
-                  <button type="submit" className="btn btn-primary">
-                    Register
-                  </button>
-                </div>
-              </form>
-              <button
-                className="btn btn-secondary"
-                onClick={handleGoogleSignUp}
-              >
-                <BsGoogle /> Sign Up Using Google
-              </button>
-            </div>
+                  {showVerifyPwd ? (
+                    <FaEyeSlash onClick={handleShowVerifyPwd} />
+                  ) : (
+                    <FaEye onClick={handleShowVerifyPwd} />
+                  )}
+                </label>
+              </div>
+              <p className="mt-4">
+                Already have an account ?{" "}
+                <Link to="/signin" className="text-accent">
+                  Sign In
+                </Link>
+              </p>
+              <div className="form-control mt-4">
+                <button type="submit" className="btn btn-primary">
+                  Register
+                </button>
+              </div>
+            </form>
+            <button className="btn btn-secondary" onClick={handleGoogleSignUp}>
+              <BsGoogle /> Sign Up Using Google
+            </button>
           </div>
         </div>
-      </section>
-      <Footer />
-    </>
+      </div>
+    </section>
   );
 };
 
