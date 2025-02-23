@@ -10,7 +10,7 @@ const Featured = () => {
   const { data: favMovies, isLoading } = useQuery({
     queryKey: ["favMovies"],
     queryFn: async () => {
-      const { data } = await axiosPublic.get(`/api/movies/featured`);
+      const { data } = await axiosPublic.get(`/movies/featured`);
       return data;
     },
   });
