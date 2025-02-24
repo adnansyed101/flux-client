@@ -63,6 +63,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/addMovie",
+        element: (
+          <PrivateRoute>
+            <AddMovie />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -73,14 +81,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
   },
-  {
-    path: "/addMovie",
-    element: (
-      <PrivateRoute>
-        <AddMovie />
-      </PrivateRoute>
-    ),
-  },
+
   {
     path: "*",
     element: <Error />,
