@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Loading from "../components/shared/Loading";
 import { useQuery } from "@tanstack/react-query";
+import useDebounce from "../hooks/useDebounceValue";
 
 const AllMovies = () => {
   const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
+  const debouncedSearchTerm = useDebounce(search, 300);
 
   const { data: allMovies, isLoading } = useQuery({
-    queryKey: ["allMovies", search, sort],
+    queryKey: ["allMovies", debouncedSearchTerm, sort],
     queryFn: async () => {
       const { data } = await axiosPublic.get(
-        `/movies?search=${search}&sort=${sort}`
+        `/movies?search=${debouncedSearchTerm}&sort=${sort}`
       );
       return data;
     },
@@ -23,10 +25,6 @@ const AllMovies = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <div className="bg-base-100 py-20 px-2 min-h-screen">
@@ -54,9 +52,11 @@ const AllMovies = () => {
         </select>
       </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {allMovies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} />
-        ))}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          allMovies.map((movie) => <MovieCard key={movie._id} movie={movie} />)
+        )}
       </div>
     </div>
   );
