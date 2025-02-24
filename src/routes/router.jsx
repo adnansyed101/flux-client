@@ -13,6 +13,7 @@ import PricingPage from "../pages/PricingPage";
 import ForgetPassword from "../pages/ForgetPassword";
 import Main from "../layout/Main";
 import ContactUs from "../pages/ContactUs";
+import MyMovies from "../pages/MyMovies";
 
 const router = createBrowserRouter([
   {
@@ -28,27 +29,27 @@ const router = createBrowserRouter([
         element: <PricingPage />,
       },
       {
-        path: "/contactus",
+        path: "contactus",
         element: <ContactUs />,
       },
       {
-        path: "/allMovies",
+        path: "allMovies",
         element: <AllMovies />,
       },
       {
-        path: "/signin",
+        path: "signin",
         element: <SignIn />,
       },
       {
-        path: "/signup",
+        path: "signup",
         element: <Signup />,
       },
       {
-        path: "/forget-password",
+        path: "forget-password",
         element: <ForgetPassword />,
       },
       {
-        path: "/movie/:id",
+        path: "movie/:id",
         element: (
           <PrivateRoute>
             <MovieDetails />
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/favourites/:uid",
+        path: "favourites/:uid",
         element: (
           <PrivateRoute>
             <Favourites />
@@ -64,10 +65,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/addMovie",
+        path: "addMovie",
         element: (
           <PrivateRoute>
             <AddMovie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myMovies/:id",
+        element: (
+          <PrivateRoute>
+            <MyMovies />
           </PrivateRoute>
         ),
       },
