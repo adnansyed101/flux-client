@@ -1,7 +1,7 @@
 const ContactUs = () => {
   return (
     <div className="min-h-screen flex justify-center items-center py-20 px-2">
-      <div className="card w-full max-w-4xl shadow-xl bg-base-100">
+      <div className="card w-full max-w-4xl shadow-xl bg-base-100 border">
         <div className="card-body">
           <h2 className="text-3xl font-bold text-center text-primary">
             Contact Us
