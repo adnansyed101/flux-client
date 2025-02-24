@@ -1,7 +1,11 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const MovieForm = () => {
   const genres = [
@@ -16,8 +20,11 @@ const MovieForm = () => {
     { id: 9, name: "Romance" },
     { id: 10, name: "Animation" },
   ];
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const [rating, setRating] = useState(0);
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -34,6 +41,18 @@ const MovieForm = () => {
     summary: "",
   });
 
+  const { mutateAsync: updateMovie } = useMutation({
+    mutationFn: (newMovie) => axiosPublic.post("/movies", newMovie),
+    onSuccess: () => {
+      reset();
+      toast.success(`Movie created`);
+      navigate(`/myMovies/${user.uid}`);
+    },
+    onError: (err) => {
+      toast.error("Error in creating movie: " + err.message);
+    },
+  });
+
   const years = Array.from(
     { length: new Date().getFullYear() - 1900 + 1 },
     (_, i) => 1900 + i
@@ -43,23 +62,15 @@ const MovieForm = () => {
     setRating(rate);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (rating === 0) {
       toast.warn("Rating cannot be 0");
       return;
     }
-    const newMovie = { ...data, rating };
+    
+    const newMovie = { ...data, rating, uid: user.uid };
 
-    fetch("https://b10-a10-server-side-adnansyed101.vercel.app/api/movies", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newMovie),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        reset();
-        toast.success(`${data.data.title} movie created`);
-      });
+    await updateMovie(newMovie);
   };
 
   return (
@@ -120,23 +131,22 @@ const MovieForm = () => {
             <div className="label">
               <span className="label-text">Select Genre</span>
             </div>
-            <Controller
-              name="genre"
-              control={control}
-              rules={{ required: "This is required" }}
-              render={({ field }) => (
-                <select
-                  {...field}
-                  defaultValue={"Select Genre"}
-                  className="select select-bordered"
-                >
-                  <option disabled>Select Genre</option>
-                  {genres.map((genre) => (
-                    <option key={genre.id}>{genre.name}</option>
-                  ))}
-                </select>
-              )}
-            />
+            <select
+              {...register("genre", {
+                required: "This is required",
+              })}
+              defaultValue={"Select Genre"}
+              className="select select-bordered"
+            >
+              <option value={"Select Genre"} disabled>
+                Select Genre
+              </option>
+              {genres.map((genre) => (
+                <option value={genre.name} key={genre.id}>
+                  {genre.name}
+                </option>
+              ))}
+            </select>
             {errors.genre && (
               <p className="text-error">{errors.genre?.message}</p>
             )}
