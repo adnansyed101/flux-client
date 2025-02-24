@@ -1,15 +1,15 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { AuthContext } from "../provider/AuthProvider";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../components/Loading";
+import Loading from "../components/shared/Loading";
+import useAuth from "../hooks/useAuth";
 
 const MovieDetails = () => {
   const [disabled, setDisabled] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const { id } = useParams();
@@ -25,7 +25,6 @@ const MovieDetails = () => {
       return data;
     },
   });
-
 
   const addToFav = () => {
     fetch(
