@@ -1,28 +1,41 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../components/Loading";
 
 const MovieDetails = () => {
   const [disabled, setDisabled] = useState(false);
-  const { data: movie } = useLoaderData();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { _id, ...addMovie } = movie;
+  const axiosPublic = useAxiosPublic();
+  const { id } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { data: movie, isLoading } = useQuery({
+    queryKey: ["movie"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/movies/${id}`);
+      return data;
+    },
+  });
+
+
   const addToFav = () => {
-    fetch("https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...addMovie, email: user.email }),
-    })
+    fetch(
+      "https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: user.email }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setDisabled(true);
@@ -34,7 +47,7 @@ const MovieDetails = () => {
   };
 
   const deleteMovie = () => {
-    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${_id}`, {
+    fetch(`https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -47,9 +60,12 @@ const MovieDetails = () => {
       });
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
-      <Navbar />
       <div className="bg-gradient-to-br from-primary to-accent min-h-screen flex place-items-center py-20 px-2">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-base-100 p-6 rounded-lg shadow-lg max-w-5xl mx-auto">
           {/* Movie Image */}
@@ -71,7 +87,9 @@ const MovieDetails = () => {
               <span className="badge badge-outline badge-primary w-full">
                 {movie.genre}
               </span>
-              <span className="badge badge-outline w-full">{movie.duration} mins</span>
+              <span className="badge badge-outline w-full">
+                {movie.duration} mins
+              </span>
               <span className="badge badge-outline w-full">{movie.year}</span>
               <span className="badge badge-outline badge-accent w-full">
                 Rating: {movie.rating}/10
@@ -94,14 +112,16 @@ const MovieDetails = () => {
               <button className="btn btn-error" onClick={deleteMovie}>
                 <FaRegTrashAlt /> Delete Movie
               </button>
-              <Link to={`/update/movie/${_id}`} className="btn btn-secondary">
+              <Link
+                to={`/update/movie/${movie._id}`}
+                className="btn btn-secondary"
+              >
                 Update Movie
               </Link>
             </div>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
