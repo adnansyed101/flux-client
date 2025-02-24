@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
 import { toast } from "react-toastify";
 import "animate.css";
 import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 const Signup = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -17,7 +17,7 @@ const Signup = () => {
     setUser,
     updateUserProfile,
     createUserWithGoogle,
-  } = useContext(AuthContext);
+  } = useAuth();
   const navigate = useNavigate();
   const {
     register,

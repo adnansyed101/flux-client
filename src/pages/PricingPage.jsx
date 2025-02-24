@@ -1,5 +1,5 @@
 import PricingHero from "../components/PricingHero";
-import PricingCard from "../components/PricingCard";
+import PricingCard from "../components/cards/PricingCard";
 import { useEffect } from "react";
 
 const PricingPage = () => {

@@ -1,8 +1,8 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../components/cards/MovieCard";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import Loading from "../components/Loading";
+import Loading from "../components/shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 
 const AllMovies = () => {

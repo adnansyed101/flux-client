@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import FavMovieCard from "../components/FavMovieCard";
+import FavMovieCard from "../components/cards/FavMovieCard";
 import { useEffect } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../components/Loading";
+import Loading from "../components/shared/Loading";
 
 const Favourites = () => {
   const { uid } = useParams();

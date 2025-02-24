@@ -1,15 +1,15 @@
 import { BsGoogle } from "react-icons/bs";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import "animate.css";
-import Loading from "../components/Loading";
+import Loading from "../components/shared/Loading";
 import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 
 const SignIn = () => {
   const { user, login, setUser, createUserWithGoogle, loading, setLoading } =
-    useContext(AuthContext);
+    useAuth();
 
   const navigate = useNavigate();
   const {

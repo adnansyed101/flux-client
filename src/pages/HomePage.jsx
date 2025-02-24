@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import Banner from "../components/Banner";
-import Featured from "../components/Featured";
-import PopCat from "../components/PopCat";
-import Watch from "../components/Watch";
+import Featured from "../components/home/Featured";
+import PopCat from "../components/home/PopCat";
+import Watch from "../components/home/Watch";
+import Banner from "../components/home/Banner";
 
 const HomePage = () => {
   useEffect(() => {
