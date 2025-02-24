@@ -8,9 +8,9 @@ import PrivateRoute from "./PrivateRoute";
 import MovieDetails from "../pages/MovieDetails";
 import Favourites from "../pages/Favourites";
 import UpdateMoviePage from "../pages/UpdateMoviePage";
-import Error from "../components/Error";
+import Error from "../pages/Error";
 import PricingPage from "../pages/PricingPage";
-import ForgetPassword from "../components/ForgetPassword";
+import ForgetPassword from "../pages/ForgetPassword";
 import Main from "../layout/Main";
 import ContactUs from "../pages/ContactUs";
 
