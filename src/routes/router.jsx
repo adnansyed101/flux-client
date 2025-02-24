@@ -47,23 +47,23 @@ const router = createBrowserRouter([
         path: "/forget-password",
         element: <ForgetPassword />,
       },
+      {
+        path: "/movie/:id",
+        element: (
+          <PrivateRoute>
+            <MovieDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/favourites/:uid",
+        element: (
+          <PrivateRoute>
+            <Favourites />
+          </PrivateRoute>
+        ),
+      },
     ],
-  },
-  {
-    path: "/favourites/:uid",
-    element: (
-      <PrivateRoute>
-        <Favourites />
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/movie/:id",
-    element: (
-      <PrivateRoute>
-        <MovieDetails />
-      </PrivateRoute>
-    ),
   },
   {
     path: "/update/movie/:id",
