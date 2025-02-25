@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegTrashAlt, FaHeart } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -8,7 +8,6 @@ import Loading from "../components/shared/Loading";
 import useAuth from "../hooks/useAuth";
 
 const MovieDetails = () => {
-  const [disabled, setDisabled] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -26,6 +25,17 @@ const MovieDetails = () => {
     },
   });
 
+  const { mutateAsync: createFavourite } = useMutation({
+    mutationFn: (newFavourite) => axiosPublic.post("/favourites", newFavourite),
+    onSuccess: (data) => {
+      toast.success(data.data.message);
+      navigate(`/favourites/${user.uid}`);
+    },
+    onError: (err) => {
+      toast.error("Error in deleting movie: " + err.message);
+    },
+  });
+
   const { mutate: deleteMovie } = useMutation({
     mutationFn: () => axiosPublic.delete(`/movies/${movie._id}`),
     onSuccess: () => {
@@ -37,23 +47,9 @@ const MovieDetails = () => {
     },
   });
 
-  const addToFav = () => {
-    fetch(
-      "https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: user.email }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setDisabled(true);
-        toast.success(`${data.data.title} added to favourite`);
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+  const addToFav = async () => {
+    const movieData = { movie: movie._id, uid: user.uid };
+    await createFavourite(movieData);
   };
 
   if (isLoading) {
@@ -97,11 +93,7 @@ const MovieDetails = () => {
           </p>
           {/* Buttons */}
           <div className="flex gap-4 justify-center flex-wrap">
-            <button
-              className="btn btn-primary"
-              onClick={addToFav}
-              disabled={disabled}
-            >
+            <button className="btn btn-primary" onClick={addToFav}>
               <FaHeart /> Add to Favourite
             </button>
             <button className="btn btn-error" onClick={deleteMovie}>
