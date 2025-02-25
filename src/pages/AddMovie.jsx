@@ -53,8 +53,8 @@ const MovieForm = () => {
   });
 
   const years = Array.from(
-    { length: new Date().getFullYear() - 1900 + 1 },
-    (_, i) => 1900 + i
+    { length: new Date().getFullYear() - 1950 + 1 },
+    (_, i) => 1950 + i
   );
 
   const handleRating = (rate) => {
