@@ -80,17 +80,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/update/movie/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateMoviePage />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
-  {
-    path: "/update/movie/:id",
-    element: (
-      <PrivateRoute>
-        <UpdateMoviePage />
-      </PrivateRoute>
-    ),
-  },
-
   {
     path: "*",
     element: <Error />,
