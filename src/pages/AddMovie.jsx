@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Rating } from "react-simple-star-rating";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -29,7 +29,6 @@ const MovieForm = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
     reset,
   } = useForm({
@@ -67,7 +66,7 @@ const MovieForm = () => {
       toast.warn("Rating cannot be 0");
       return;
     }
-    
+
     const newMovie = { ...data, rating, uid: user.uid };
 
     await updateMovie(newMovie);
@@ -178,23 +177,21 @@ const MovieForm = () => {
             <div className="label">
               <span className="label-text">Release Year</span>
             </div>
-            <Controller
+            <select
               name="year"
-              control={control}
-              rules={{ required: "This is required" }}
-              render={({ field }) => (
-                <select
-                  {...field}
-                  defaultValue={"Select Year"}
-                  className="select select-bordered"
-                >
-                  <option disabled>Select Year</option>
-                  {years.map((year) => (
-                    <option key={year}>{year}</option>
-                  ))}
-                </select>
-              )}
-            />
+              {...register("year", {
+                required: "This is required.",
+              })}
+              defaultValue={"Select Year"}
+              className="select select-bordered"
+            >
+              <option value={"Select Year"}>Select Year</option>
+              {years.map((year) => (
+                <option value={year} key={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
             {errors.year && (
               <p className="text-error">{errors.year?.message}</p>
             )}
