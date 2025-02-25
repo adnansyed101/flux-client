@@ -35,7 +35,7 @@ const MovieForm = () => {
   } = useForm({
     imgLink: "",
     title: "",
-    genre: "Pick One",
+    genre: "",
     duration: 0,
     year: "",
     summary: "",
