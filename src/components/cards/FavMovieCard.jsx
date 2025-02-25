@@ -2,31 +2,27 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const FavMovieCard = ({ movie }) => {
-  const { imgLink, title, genre, duration, year, rating, _id } = movie;
+const FavMovieCard = ({ movie, favMovieId }) => {
+  const { imgLink, title, genre, duration, year, rating } = movie;
   const { user } = useAuth();
-
-  console.log(user);
-  
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const deleteFavMovie = () => {
-    fetch(
-      `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/favourites/${user.email}/${_id}`,
-      {
-        method: "DELETE",
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        toast.error(`${data.message}`);
-        navigate(`/favourites/${user.email}`);
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-  };
+  const { mutateAsync: deleteFavouriteMovie } = useMutation({
+    mutationFn: () => axiosPublic.delete(`/favourites/${favMovieId}`),
+    onSuccess: () => {
+      toast.warn(`Movie deleted.`);
+      navigate(`/favourites/${user.uid}`);
+      return queryClient.invalidateQueries("favMovies");
+    },
+    onError: (err) => {
+      return toast.error("Error in deleting movie: " + err.message);
+    },
+  });
 
   return (
     <div className="card bg-base-100 shadow-lg rounded-lg">
@@ -58,7 +54,10 @@ const FavMovieCard = ({ movie }) => {
 
         {/* Delete Favorite Button */}
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-error btn-sm" onClick={deleteFavMovie}>
+          <button
+            className="btn btn-error btn-sm"
+            onClick={deleteFavouriteMovie}
+          >
             Delete Favorite
           </button>
         </div>
@@ -69,6 +68,7 @@ const FavMovieCard = ({ movie }) => {
 
 FavMovieCard.propTypes = {
   movie: PropTypes.object,
+  favMovieId: PropTypes.string,
 };
 
 export default FavMovieCard;
