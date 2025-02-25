@@ -30,7 +30,7 @@ const Favourites = () => {
       {favMovies.length > 0 ? (
         <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 h-fit">
           {favMovies.map((movie) => (
-            <FavMovieCard key={movie._id} movie={movie.movie} />
+            <FavMovieCard key={movie._id} movie={movie.movie} favMovieId={movie._id}/>
           ))}
         </div>
       ) : (
