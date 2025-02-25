@@ -26,21 +26,19 @@ const Favourites = () => {
   }
 
   return (
-    <>
+    <div className="bg-base-100 py-20 min-h-screen">
       {favMovies.length > 0 ? (
-        <div className="bg-base-100 py-20 min-h-screen">
-          <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-3 gap-5 h-fit">
-            {favMovies.map((movie) => (
-              <FavMovieCard key={movie._id} movie={movie.movie} />
-            ))}
-          </div>
+        <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 h-fit">
+          {favMovies.map((movie) => (
+            <FavMovieCard key={movie._id} movie={movie.movie} />
+          ))}
         </div>
       ) : (
-        <div className="bg-base-100 py-20 min-h-screen flex justify-center items-center">
-          <h1 className="text-4xl font-semibold">No Favourites Selected</h1>
-        </div>
+        <h1 className="text-4xl font-semibold text-center">
+          No Favourites Selected
+        </h1>
       )}
-    </>
+    </div>
   );
 };
 
