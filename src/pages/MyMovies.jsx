@@ -5,17 +5,19 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import Loading from "../components/shared/Loading";
 import { useQuery } from "@tanstack/react-query";
 import useDebounce from "../hooks/useDebounceValue";
+import useAuth from "../hooks/useAuth";
 
 const MyMovies = () => {
   const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
   const debouncedSearchTerm = useDebounce(search, 300);
+  const { user } = useAuth();
 
   const { data: myMovies, isLoading } = useQuery({
     queryKey: ["myMovies", debouncedSearchTerm],
     queryFn: async () => {
       const { data } = await axiosPublic.get(
-        `/movies?search=${debouncedSearchTerm}`
+        `/movies/${user.uid}?search=${debouncedSearchTerm}`
       );
       return data;
     },
@@ -24,10 +26,6 @@ const MyMovies = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <div className="bg-base-100 py-20 px-2 min-h-screen">
