@@ -1,9 +1,9 @@
 import axios from "axios";
 
-// Server Link -- https://earnify-snowy.vercel.app
+// Server Link -- https://flux-server-gamma.vercel.app
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://flux-server-gamma.vercel.app",
 });
 
 const useAxiosPublic = () => {

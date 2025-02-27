@@ -89,7 +89,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/movies/movie/${params.id}`),
+          axios.get(
+            `https://flux-server-gamma.vercel.app/movies/movie/${params.id}`
+          ),
       },
     ],
   },
