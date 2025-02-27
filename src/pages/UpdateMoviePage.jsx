@@ -1,11 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { toast } from "react-toastify";
-import useAxiosPublic from "../hooks/useAxiosPublic";
-import Loading from "../components/shared/Loading";
 
 const UpdateMoviePage = () => {
   const genres = [
@@ -22,18 +19,10 @@ const UpdateMoviePage = () => {
   ];
 
   const navigate = useNavigate();
-  const { id } = useParams();
-  const axiosPublic = useAxiosPublic();
-
-  const { data: movie, isLoading } = useQuery({
-    queryKey: ["updateMovie"],
-    queryFn: async () => {
-      const { data } = await axiosPublic.get(`/movies/movie/${id}`);
-      return data;
-    },
-  });
+  const { data: movie } = useLoaderData();
 
   const [rating, setRating] = useState(movie?.rating);
+
   const {
     register,
     handleSubmit,
@@ -71,10 +60,6 @@ const UpdateMoviePage = () => {
         toast.success(`${data.data.title} movie updated`);
       });
   };
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <section className="flex flex-col items-center py-20 px-2">

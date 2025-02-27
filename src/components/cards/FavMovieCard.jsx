@@ -25,7 +25,7 @@ const FavMovieCard = ({ movie, favMovieId }) => {
   });
 
   return (
-    <div className="card bg-base-100 shadow-lg rounded-lg">
+    <div className="card bg-base-100 shadow-lg rounded-lg border">
       {/* Movie Poster */}
       <figure>
         <img

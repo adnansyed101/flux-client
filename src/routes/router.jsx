@@ -14,6 +14,7 @@ import ForgetPassword from "../pages/ForgetPassword";
 import Main from "../layout/Main";
 import ContactUs from "../pages/ContactUs";
 import MyMovies from "../pages/MyMovies";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,8 @@ const router = createBrowserRouter([
             <UpdateMoviePage />
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          axios.get(`http://localhost:5000/movies/movie/${params.id}`),
       },
     ],
   },
