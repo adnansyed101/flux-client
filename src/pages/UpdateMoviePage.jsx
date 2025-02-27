@@ -1,8 +1,10 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const UpdateMoviePage = () => {
   const genres = [
@@ -17,9 +19,21 @@ const UpdateMoviePage = () => {
     { id: 9, name: "Romance" },
     { id: 10, name: "Animation" },
   ];
-
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { data: movie } = useLoaderData();
+
+  const { mutateAsync: updateMovie } = useMutation({
+    mutationFn: (updateMovie) =>
+      axiosPublic.put(`/movies/${movie._id}`, updateMovie),
+    onSuccess: () => {
+      toast.success(`Movie Updated`);
+      navigate(`/movie/${movie._id}`);
+    },
+    onError: (err) => {
+      toast.error("Error in creating movie: " + err.message);
+    },
+  });
 
   const [rating, setRating] = useState(movie?.rating);
 
@@ -43,22 +57,10 @@ const UpdateMoviePage = () => {
     (_, i) => 1950 + i
   );
 
-  const onSubmit = (data) => {
-    const newMovie = { ...data, rating };
+  const onSubmit = async (data) => {
+    const updatedMovie = { ...data, rating };
 
-    fetch(
-      `https://b10-a10-server-side-adnansyed101.vercel.app/api/movies/${movie._id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newMovie),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        navigate(`/movie/${movie._id}`);
-        toast.success(`${data.data.title} movie updated`);
-      });
+    await updateMovie(updatedMovie);
   };
 
   return (
