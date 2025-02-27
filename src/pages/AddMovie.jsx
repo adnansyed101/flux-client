@@ -40,7 +40,7 @@ const MovieForm = () => {
     summary: "",
   });
 
-  const { mutateAsync: updateMovie } = useMutation({
+  const { mutateAsync: createMovie } = useMutation({
     mutationFn: (newMovie) => axiosPublic.post("/movies", newMovie),
     onSuccess: () => {
       reset();
@@ -69,7 +69,7 @@ const MovieForm = () => {
 
     const newMovie = { ...data, rating, uid: user.uid };
 
-    await updateMovie(newMovie);
+    await createMovie(newMovie);
   };
 
   return (
